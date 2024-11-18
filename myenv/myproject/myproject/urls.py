@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from crud import views
 from django.views.generic.detail import DetailView
+from django.conf import settings
+from django.conf.urls.static import static
 
 # 前略
 urlpatterns = [
@@ -30,3 +32,5 @@ urlpatterns = [
     path('crud/detail/<int:pk>',views.ProductDetailView.as_view(), name="detail"),
 ]
 
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
